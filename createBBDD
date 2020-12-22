@@ -1,0 +1,4 @@
+CREATE TABLE imagenes (
+  id int(11) NOT NULL,
+  imagen blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

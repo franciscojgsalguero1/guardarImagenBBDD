@@ -1,0 +1,35 @@
+<?php
+// used to get mysql database connection
+class Database{
+
+	// specify your own database credentials
+	private $host = "localhost";
+	private $db_name = "prueba";
+        private $table_db = "images_tabla";
+	private $username = "root";
+	private $password = "";
+	public $conn;
+
+	// get the database connection
+	public function getConnection(){
+
+		$this->conn = null;
+
+		try{
+			$this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+		}catch(PDOException $exception){
+			echo "Connection error: " . $exception->getMessage();
+		}
+
+		return $this->conn;
+	}
+        
+        public function getdatabase() {
+            return $this->db_name;
+        }
+        
+        public function gettablename() {
+            return $this->table_db;
+        }
+}
+?>
