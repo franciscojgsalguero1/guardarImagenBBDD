@@ -3,6 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Imagen</title>
+        <style>
+            img {
+                max-width: 300px;
+                max-height: 300px;
+            }
+        </style>
 </head>
 <body>
     <form>
