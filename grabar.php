@@ -13,6 +13,7 @@
         } else {
             echo "Error al almacenar la imagen.";
         }
+        echo "<a href='index.php'><button type='button'> Volver</button></a>";
         
     } catch (Exception $e) {
             die ("Se produjo un error");

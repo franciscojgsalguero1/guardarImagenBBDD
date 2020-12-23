@@ -34,7 +34,7 @@
         <tr>
             <td>
                 <label for="id">ID: </label>
-                <input id="id" type="number" name="id">
+                <input id="id" type="number" name="id" min="0">
             </td>
             <td>
                 <button type="submit" class="btn btn-primary">Ver</button>
