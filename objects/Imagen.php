@@ -24,7 +24,9 @@ class Imagen {
     }
     
     public function SetImagen($imagen) {
-        $this->imagen = base64_encode(file_get_contents($imagen));
+        if (!empty($imagen)) {
+            $this->imagen = base64_encode(file_get_contents($imagen));
+        }
     }
     
     public function insertarImagen() {
