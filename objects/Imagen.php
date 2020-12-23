@@ -49,14 +49,38 @@ class Imagen {
     }
     
     public function leerUna($id) {
+        $number = $id;
         // hacemos la query
         $query = "SELECT imagenes FROM ".$this->table_name." WHERE id= :id";
         $stmt = $this->conn->prepare($query); // Se crea un objeto PDOStatement.
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();// Se ejecuta la consulta.
-        $datos = $stmt->fetch(PDO::FETCH_ASSOC)["imagenes"]; // Se recuperan los resultados.
+        // comprobamos si hay una imagen con ese id, si no es así, devolvemos la imagen de no encontrado
+        if (!$this->contar($stmt, $id)) {
+            $number = 1;
+        }
+        $stmt->bindParam(":id", $number);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $datos = $stmt->fetch(PDO::FETCH_ASSOC)["imagenes"];
+        }
+        
         $stmt->closeCursor(); // Se libera el recurso.
         $datos = base64_decode($datos); // se descodifica la imagen
+        
         return $datos;
+    }
+    
+    private function contar($stmt, $id) {
+        
+        $output = false;
+        
+        $stmt->bindParam(":id", $id);
+        if($stmt->execute()) {
+            if($stmt->rowCount() > 0) {
+                $output = true;
+            }
+        }
+        
+        return $output;
+        
     }
 }
